@@ -2,7 +2,11 @@ sleep: Is a function that returns a promise that resolves after a given time. It
 
 retry: A function that repeatedly attempts to execute an asynchronous operation until it succeeds or the maximum number of attempts is reached. If the operation fails, retry waits for a specified delay (optionally increasing each time) before trying again. Useful for handling transient errors such as network instability in async workflows.
 
-pLimit: Is a function that returns a promise that resolves after a given number of attempts. It is used to limit the number of concurrent executions of the code. it is used in async/await to limit the number of concurrent executions of the code. 
+pLimit: A function that limits the number of concurrently running asynchronous operations. It returns a limiter function, which wraps tasks so that no more than the specified number run at once. Useful for controlling concurrency in situations like API requests or processing large numbers of async tasks without overloading resources.
 
 
-myPromiseAll: 
+myPromiseAll: A function that takes an array of values or promises and returns a new promise that resolves when all of the input promises have resolved, or rejects immediately if any input promise rejects. It works like Promise.all, collecting the results in order, and is useful for coordinating multiple concurrent asynchronous tasks and waiting for all to complete successfully.
+
+myPromiseAllSettled: A function that takes an array of values or promises and returns a promise that resolves after all of them have settled (either fulfilled or rejected). It produces an array of result objects, each indicating whether the corresponding input was fulfilled or rejected and containing either the value or the reason. This is useful for running multiple asynchronous tasks in parallel and collecting all their results, regardless of individual success or failure.
+
+eventLoopTrace: A function that demonstrates the order in which JavaScript's event loop processes different types of tasks: synchronous code, microtasks (such as queueMicrotask and Promise.then), and macrotasks (such as setTimeout and setImmediate). It collects and logs the sequence in which each task executes, providing insight into JavaScript's asynchronous execution model and the prioritization of task types in the event loop.
